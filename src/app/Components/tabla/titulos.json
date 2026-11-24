@@ -1,0 +1,8 @@
+{
+  "id": "ID",
+  "nrc": "NRC",
+  "nombre_materia": "Nombre de la Materia",
+  "nombre_docente": "Docente",
+  "correo_docente": "Correo del Docente",
+  "acciones": "Acción"
+}

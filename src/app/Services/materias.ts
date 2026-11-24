@@ -1,8 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../environments/environment';
 
-// Forma de una materia (igual a las columnas de la tabla en la base de datos)
+/**
+ * Modelo de datos que representa una Materia en el cliente Angular.
+ */
 export interface Materia {
   id?: number;
   nrc: string;
@@ -11,29 +14,49 @@ export interface Materia {
   correo_docente: string;
 }
 
-// Servicio: aquí están todas las llamadas al backend de materias
+/**
+ * Estructura de respuesta de la API REST del backend.
+ */
+interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+}
+
+/**
+ * Servicio encargado de gestionar la comunicación HTTP con la API de materias.
+ * Utiliza la variable de entorno `environment.apiUrl` para configurar la dirección del backend.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class MateriasService {
   private http = inject(HttpClient);
-  // Dirección del backend publicado en Railway.
-  // Para probar en tu computador cámbiala por: 'http://localhost:3001/api/v1/materias'
-  private url = 'https://backendunminutocampus-production.up.railway.app/api/v1/materias';
+  private readonly url = `${environment.apiUrl}/materias`;
 
-  // Traer todas las materias.
-  // El backend responde { success, data } y con map nos quedamos solo con data
+  /**
+   * Obtiene la lista completa de materias.
+   */
   getMaterias(): Observable<Materia[]> {
-    return this.http.get<any>(this.url).pipe(map((res) => res.data));
+    return this.http
+      .get<ApiResponse<Materia[]>>(this.url)
+      .pipe(map((res) => res.data));
   }
 
-  // Crear una materia nueva
+  /**
+   * Crea una nueva materia en el sistema.
+   */
   crearMateria(materia: Materia): Observable<Materia> {
-    return this.http.post<any>(this.url, materia).pipe(map((res) => res.data));
+    return this.http
+      .post<ApiResponse<Materia>>(this.url, materia)
+      .pipe(map((res) => res.data));
   }
 
-  // Eliminar una materia por su id
-  eliminarMateria(id: number): Observable<any> {
-    return this.http.delete<any>(this.url + '/' + id).pipe(map((res) => res.data));
+  /**
+   * Elimina una materia por su identificador único.
+   */
+  eliminarMateria(id: number): Observable<unknown> {
+    return this.http
+      .delete<ApiResponse<unknown>>(`${this.url}/${id}`)
+      .pipe(map((res) => res.data));
   }
 }

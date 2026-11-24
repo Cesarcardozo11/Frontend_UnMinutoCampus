@@ -5,38 +5,6 @@
     <p>Materias inscritas con su NRC y el docente a cargo.</p>
   </header>
 
-  <div class="tarjeta tabla-contenedor">
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>NRC</th>
-          <th>Nombre de la Materia</th>
-          <th>Docente</th>
-          <th>Correo del Docente</th>
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- @for = repite una fila por cada materia -->
-        @for (materia of materias(); track materia.id) {
-          <tr>
-            <td>{{ materia.id }}</td>
-            <td>{{ materia.nrc }}</td>
-            <td>{{ materia.nombre_materia }}</td>
-            <td>{{ materia.nombre_docente }}</td>
-            <td>{{ materia.correo_docente }}</td>
-            <td>
-              <button class="boton-eliminar" (click)="eliminar(materia.id!)">Eliminar</button>
-            </td>
-          </tr>
-        } @empty {
-          <!-- @empty = se muestra si la lista está vacía -->
-          <tr>
-            <td colspan="6" class="sin-datos">No hay materias registradas</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
+  <!-- Componente reutilizable de tabla idéntico al patrón de Lulosa -->
+  <app-tabla [data]="materias()" (eliminar)="eliminar($event)"></app-tabla>
 </section>

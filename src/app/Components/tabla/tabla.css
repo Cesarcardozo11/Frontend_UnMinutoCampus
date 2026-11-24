@@ -1,0 +1,71 @@
+/* Contenedor con scroll horizontal para pantallas pequeñas */
+.tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
+  background-color: white;
+  border: 1px solid #d9e1ec;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 40, 85, 0.08);
+}
+
+table {
+  width: 100%;
+  min-width: 760px;
+  background: transparent;
+}
+
+/* Encabezado con estilo Uniminuto */
+th.mat-mdc-header-cell {
+  background-color: #002855;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 3px solid #f2a900;
+}
+
+th.mat-mdc-header-cell,
+td.mat-mdc-cell {
+  white-space: nowrap;
+  padding: 14px 16px;
+}
+
+td.mat-mdc-cell {
+  color: #1b2430;
+  border-bottom: 1px solid #e6ebf2;
+}
+
+/* Resaltado de fila al pasar el mouse */
+tr.mat-mdc-row:hover td {
+  background-color: #fff9eb;
+}
+
+tr.mat-mdc-row:last-child td {
+  border-bottom: none;
+}
+
+.sin-datos {
+  padding: 40px 16px;
+  text-align: center;
+  color: #5b6675;
+  background-color: white;
+  border: 1px dashed #d9e1ec;
+  border-radius: 14px;
+}
+
+.boton-eliminar {
+  padding: 6px 14px;
+  border: 1px solid #b3261e;
+  border-radius: 20px;
+  background-color: white;
+  color: #b3261e;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.boton-eliminar:hover {
+  background-color: #b3261e;
+  color: white;
+}

@@ -1,9 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 import { MateriasService } from '../../Services/materias';
 
-// Formulario para registrar una materia
+/**
+ * Componente de Formulario para registrar una nueva materia.
+ * Incorpora SweetAlert2 para el feedback visual al usuario y estado reactivo de carga.
+ */
 @Component({
   selector: 'app-form',
   imports: [ReactiveFormsModule],
@@ -15,29 +20,48 @@ export class Form {
   private materiasService = inject(MateriasService);
   private router = inject(Router);
 
-  // Los campos del formulario. Validators.required = el campo es obligatorio
+  /** Signal para deshabilitar el botón y mostrar estado de procesamiento */
+  cargando = signal(false);
+
+  /** Formulario reactivo fuertemente tipado con validaciones integradas */
   materiaForm = this.fb.nonNullable.group({
-    nrc: ['', Validators.required],
-    nombre_materia: ['', Validators.required],
-    nombre_docente: ['', Validators.required],
-    correo_docente: ['', [Validators.required, Validators.email]],
+    nrc: ['', [Validators.required, Validators.maxLength(30)]],
+    nombre_materia: ['', [Validators.required, Validators.maxLength(150)]],
+    nombre_docente: ['', [Validators.required, Validators.maxLength(150)]],
+    correo_docente: ['', [Validators.required, Validators.email, Validators.maxLength(150)]],
   });
 
-  guardar() {
-    // Si falta algún campo, no se envía
+  guardar(): void {
     if (this.materiaForm.invalid) {
-      alert('Por favor completa todos los campos correctamente');
+      this.materiaForm.markAllAsTouched();
+      Swal.fire({
+        icon: 'warning',
+        title: 'Formulario incompleto',
+        text: 'Por favor completa todos los campos requeridos correctamente.',
+      });
       return;
     }
 
-    // Envía la materia al backend
+    this.cargando.set(true);
+
     this.materiasService.crearMateria(this.materiaForm.getRawValue()).subscribe({
-      next: () => {
-        alert('Materia registrada');
-        this.router.navigate(['/Materias']); // vuelve a la lista
+      next: (materia) => {
+        this.cargando.set(false);
+        Swal.fire({
+          icon: 'success',
+          title: 'Materia registrada',
+          text: `La materia "${materia.nombre_materia}" ha sido registrada exitosamente.`,
+          timer: 1800,
+          showConfirmButton: false,
+        }).then(() => this.router.navigate(['/Materias']));
       },
-      error: () => {
-        alert('No se pudo registrar la materia (¿el NRC ya existe?)');
+      error: (error: HttpErrorResponse) => {
+        this.cargando.set(false);
+        Swal.fire({
+          icon: 'error',
+          title: 'No se pudo registrar',
+          text: error.error?.data || 'Ocurrió un error al registrar la materia (¿el NRC ya existe o el servidor está apagado?)',
+        });
       },
     });
   }

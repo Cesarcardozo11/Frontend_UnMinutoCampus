@@ -5,31 +5,45 @@
     <p>Agrega una materia nueva con su NRC y la información del docente.</p>
   </header>
 
-  <!-- formGroup = conecta el formulario con materiaForm del .ts -->
-  <!-- ngSubmit = al pulsar el botón se llama a guardar() -->
   <form class="tarjeta formulario" [formGroup]="materiaForm" (ngSubmit)="guardar()">
     <div class="campos">
       <div class="campo">
         <label>NRC</label>
-        <input type="text" formControlName="nrc" placeholder="NRC-60-00000">
+        <input type="text" formControlName="nrc" placeholder="NRC-60-00000" />
+        @if (materiaForm.controls.nrc.touched && materiaForm.controls.nrc.hasError('required')) {
+          <small class="error-texto">El NRC es obligatorio</small>
+        }
       </div>
 
       <div class="campo">
         <label>Nombre de la materia</label>
-        <input type="text" formControlName="nombre_materia" placeholder="Ej. Desarrollo Basado en Plataformas">
+        <input type="text" formControlName="nombre_materia" placeholder="Ej. Desarrollo Basado en Plataformas" />
+        @if (materiaForm.controls.nombre_materia.touched && materiaForm.controls.nombre_materia.hasError('required')) {
+          <small class="error-texto">El nombre de la materia es obligatorio</small>
+        }
       </div>
 
       <div class="campo">
         <label>Docente</label>
-        <input type="text" formControlName="nombre_docente" placeholder="Nombre completo">
+        <input type="text" formControlName="nombre_docente" placeholder="Nombre completo" />
+        @if (materiaForm.controls.nombre_docente.touched && materiaForm.controls.nombre_docente.hasError('required')) {
+          <small class="error-texto">El nombre del docente es obligatorio</small>
+        }
       </div>
 
       <div class="campo">
         <label>Correo del docente</label>
-        <input type="email" formControlName="correo_docente" placeholder="docente@uniminuto.edu.co">
+        <input type="email" formControlName="correo_docente" placeholder="docente@uniminuto.edu.co" />
+        @if (materiaForm.controls.correo_docente.touched && materiaForm.controls.correo_docente.hasError('required')) {
+          <small class="error-texto">El correo electrónico es obligatorio</small>
+        } @else if (materiaForm.controls.correo_docente.touched && materiaForm.controls.correo_docente.hasError('email')) {
+          <small class="error-texto">Ingresa un formato de correo válido</small>
+        }
       </div>
     </div>
 
-    <button type="submit" class="boton-guardar">Registrar materia</button>
+    <button type="submit" class="boton-guardar" [disabled]="cargando()">
+      {{ cargando() ? 'Registrando...' : 'Registrar materia' }}
+    </button>
   </form>
 </section>
