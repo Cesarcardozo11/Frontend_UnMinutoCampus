@@ -1,0 +1,11 @@
+/* El menú a la izquierda y el contenido a la derecha */
+.contenedor {
+  display: flex;
+  min-height: 100vh;
+}
+
+.contenido {
+  flex: 1;
+  min-width: 0; /* evita que una tabla ancha estire toda la página */
+  padding: 32px 24px;
+}

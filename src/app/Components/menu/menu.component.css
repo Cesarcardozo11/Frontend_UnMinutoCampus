@@ -1,0 +1,70 @@
+/* Menú lateral blanco con borde a la derecha */
+.menu {
+  width: 250px;
+  min-height: 100vh;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  background-color: white;
+  border-right: 1px solid #d9e1ec;
+}
+
+/* Logo */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+}
+
+.marca-logo {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #002855;
+  color: #f2a900;
+  font-weight: bold;
+}
+
+.marca-nombre {
+  font-size: 18px;
+  font-weight: bold;
+  color: #002855;
+}
+
+.marca-nombre strong {
+  color: #f2a900;
+}
+
+/* Título pequeño "ACADÉMICO" */
+.menu-seccion {
+  margin: 32px 8px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #5b6675;
+}
+
+/* Botones del menú */
+.menu a {
+  display: block;
+  margin-bottom: 4px;
+  padding: 12px;
+  border-radius: 10px;
+  color: #1b2430;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background-color: #e8eef6;
+}
+
+/* Botón de la página abierta: fondo azul y borde dorado */
+.menu a.activo {
+  background-color: #002855;
+  color: white;
+  font-weight: bold;
+  border-left: 4px solid #f2a900;
+}

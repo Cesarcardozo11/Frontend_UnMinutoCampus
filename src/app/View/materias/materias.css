@@ -1,0 +1,64 @@
+/* La tabla se puede desplazar de lado en pantallas pequeñas */
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Encabezado azul con línea dorada */
+th {
+  padding: 14px 12px;
+  background-color: #002855;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: left;
+  border-bottom: 3px solid #f2a900;
+}
+
+td {
+  padding: 14px 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #e6ebf2;
+}
+
+/* Cada dato en una sola línea */
+th,
+td {
+  white-space: nowrap;
+}
+
+/* La fila se resalta al pasar el mouse */
+tbody tr:hover {
+  background-color: #fff8e6;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.sin-datos {
+  padding: 40px;
+  text-align: center;
+  color: #5b6675;
+}
+
+/* Botón rojo con borde, se rellena al pasar el mouse */
+.boton-eliminar {
+  padding: 6px 14px;
+  border: 1px solid #b3261e;
+  border-radius: 20px;
+  background-color: white;
+  color: #b3261e;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.boton-eliminar:hover {
+  background-color: #b3261e;
+  color: white;
+}

@@ -1,0 +1,62 @@
+.formulario {
+  max-width: 720px;
+  padding: 32px;
+  box-sizing: border-box;
+  border-top: 4px solid #f2a900;
+}
+
+/* Campos en dos columnas */
+.campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #1b2430;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #b8c3d1;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+/* Campo seleccionado: borde azul */
+input:focus {
+  outline: none;
+  border-color: #002855;
+  box-shadow: 0 0 0 3px #e8eef6;
+}
+
+/* Botón azul a todo el ancho */
+.boton-guardar {
+  width: 100%;
+  margin-top: 28px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background-color: #002855;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.boton-guardar:hover {
+  background-color: #0a3d75;
+}
+
+/* En celular: una sola columna */
+@media (max-width: 600px) {
+  .campos {
+    grid-template-columns: 1fr;
+  }
+}

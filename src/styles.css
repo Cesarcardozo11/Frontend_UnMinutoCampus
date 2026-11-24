@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+/* =========================================================
+   ESTILOS GENERALES DE UNMINUTOCAMPUS
+   Azul oscuro #002855 · Dorado #f2a900 · Blanco
+   ========================================================= */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f4f6f9;
+  color: #1b2430;
+}
+
+/* Contenido de cada página (lista y formulario) */
+.pagina {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.pagina-encabezado {
+  margin-bottom: 24px;
+}
+
+.pagina-encabezado h1 {
+  margin: 0 0 4px;
+  font-size: 28px;
+  color: #1b2430;
+}
+
+.pagina-encabezado p {
+  margin: 0;
+  color: #5b6675;
+}
+
+/* Etiqueta pequeña encima del título */
+.etiqueta {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: #fff6df;
+  color: #002855;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Caja blanca con borde suave y sombra */
+.tarjeta {
+  background-color: white;
+  border: 1px solid #d9e1ec;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 40, 85, 0.08);
+}

@@ -1,0 +1,35 @@
+<section class="pagina">
+  <header class="pagina-encabezado">
+    <span class="etiqueta">Académico</span>
+    <h1>Registrar materia</h1>
+    <p>Agrega una materia nueva con su NRC y la información del docente.</p>
+  </header>
+
+  <!-- formGroup = conecta el formulario con materiaForm del .ts -->
+  <!-- ngSubmit = al pulsar el botón se llama a guardar() -->
+  <form class="tarjeta formulario" [formGroup]="materiaForm" (ngSubmit)="guardar()">
+    <div class="campos">
+      <div class="campo">
+        <label>NRC</label>
+        <input type="text" formControlName="nrc" placeholder="NRC-60-00000">
+      </div>
+
+      <div class="campo">
+        <label>Nombre de la materia</label>
+        <input type="text" formControlName="nombre_materia" placeholder="Ej. Desarrollo Basado en Plataformas">
+      </div>
+
+      <div class="campo">
+        <label>Docente</label>
+        <input type="text" formControlName="nombre_docente" placeholder="Nombre completo">
+      </div>
+
+      <div class="campo">
+        <label>Correo del docente</label>
+        <input type="email" formControlName="correo_docente" placeholder="docente@uniminuto.edu.co">
+      </div>
+    </div>
+
+    <button type="submit" class="boton-guardar">Registrar materia</button>
+  </form>
+</section>
